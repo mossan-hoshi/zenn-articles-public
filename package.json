@@ -1,0 +1,24 @@
+{
+  "name": "zenn-articles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx zenn new:article",
+    "preview": "npx zenn preview",
+    "new_book": "npx zenn new:book"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mossan-hoshi/zenn-articles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mossan-hoshi/zenn-articles/issues"
+  },
+  "homepage": "https://github.com/mossan-hoshi/zenn-articles#readme",
+  "dependencies": {
+    "zenn-cli": "^0.1.141"
+  }
+}

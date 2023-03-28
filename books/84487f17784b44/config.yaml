@@ -1,0 +1,34 @@
+title: "デザインパターンの絵本"
+summary: "GoF(Gang of Four)のデザインパターン23パターンについてそれぞれ個別の物語形式で学べる本です。カバー画像でイメージを膨らませ、更にコードサンプルで実際の実装イメージをつかむことができます"
+topics: ["デザインパターン","GoF","物語"]
+published: false
+price: 0 # 有料の場合200〜5000
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  - 0_front_matter
+  - part1_creational
+  - 1_1_factory_method
+  - 1_2_abstract_factory
+  - 1_3_builder
+  - 1_4_prototype
+  - 1_5_singleton
+  - part2_behavioral
+  - 2_1_adapter
+  - 2_2_bridge
+  - 2_3_composite
+  - 2_4_decorator
+  - 2_5_facade
+  - 2_6_flyweight
+  - 2_7_proxy
+  - part3_structural
+  - 3_1_chain_of_responsibility
+  - 3_2_command
+  - 3_3_interpreter
+  - 3_4_iterator
+  - 3_5_mediator
+  - 3_6_memento
+  - 3_7_observer
+  - 3_8_state
+  - 3_9_strategy
+  - 3_10_template_method
+  - 3_11_visitor
