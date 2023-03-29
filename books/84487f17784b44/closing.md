@@ -1,5 +1,5 @@
 ---
-title: "さらなる学習用資料・さいごに"
+title: "さらなる学習用資料・この本の作り方・さいごに"
 ---
 
 # さらなる学習用資料
@@ -16,6 +16,77 @@ title: "さらなる学習用資料・さいごに"
   - 「[Refactoring guruのDesign Pattern](https://refactoring.guru/design-patterns)」
 - ポッドキャスト
   - fukabori.fmでのゲストt_wadaさんによるデザインパターンとDIの解説回([その１](https://fukabori.fm/episode/48)、[その２](https://fukabori.fm/episode/49))
+
+# この本の作り方
+この本は以下のようなステップで作りました。
+- もっといい方法があったら教えてください(Twitter/プルリク、なんでもいいです)
+  - またもっといい物語や画像ができたらぜひプルリクしてください。まるごと差し替えます
+## 作業手順
+1. まず各パターンに対してテーマを適当に決めてもらう(ChatGPT)
+      - プロンプト
+        ```
+        GoFデザインパターンの各デザインパターンに対して物語を作ってもらいたいと思いますが、それに先立って各デザインパターンでどのような物語を書くつもりかを1物語30字程度にまとめたうえで羅列してください。なお、似たような物語が存在しないようにジャンルや設定はできるだけ幅を持たせてください。
+        ```
+        - 今回の時の回答
+          ```
+          1.2. Factory Method: 宇宙船製造工場でのロボット労働者の冒険
+          1.3. Abstract Factory: 魔法のキャンディ王国での製菓家族の物語
+          1.4. Builder: 砂漠のオアシスでの家を建てる旅人の挑戦
+          1.5. Prototype: クローンを作る未来都市での個性を見つける探求
+          1.6. Adapter: ジャングルで異なる動物たちが協力して生きる話
+          1.7. Bridge: 分断された2つの島をつなぐ橋を築く住民の奮闘
+          1.8. Composite: 雪の森で木々が連携して脅威に立ち向かう物語
+          1.9. Decorator: クリスマスツリーの飾りが命を宿す不思議な話
+          1.10. Facade: 壁の向こうの秘密の世界への入り口を～～～
+          ```
+
+2. 各パターンに対して物語を語ってもらう(ChatGPT)
+    効率化のために英語で質問しています。
+
+    - プロンプト(英語。この場合はVisitorパターン。パターン名`'Visitor Pattern'`と1の回答結果を英訳したもの(`'The story of a visitor~`)をプロンプト内に埋め込んでいます)
+      ```
+      Tell the story of the GoF design pattern 'State Pattern' as a 500-word episode that shows how the design pattern works in the human drama 'The adventures of a superhero whose abilities change with his mood.'. Please set some  commented python code in moderation to make it easy to understand how it works. Please add headings according to the content.The style of writing should match the content of the story.
+      ```
+      プロンプトの意味(日本語訳)
+      ```
+      GoFのデザインパターン「State Pattern」が、人間ドラマ「気分で能力が変わるスーパーヒーローの冒険」でどのように機能するかを500字のエピソードとして語ってください。仕組みがわかりやすいように、コメント付きのpythonコードも適度に設定してください。内容に応じて見出しを付けてください。文体はストーリーの内容に合わせてください。
+      ```
+    - 記事が生成されるのでDeepL等で翻訳してください
+      - である・ですます調が混在しがちなので、物語に向いている方に書き直したほうがいいかもしれません
+
+3. 直後の質問で画像生成AI用のプロンプトを作成してもらう(ChatGPT)
+      - プロンプト
+        ```
+        Assuming that a scene from this episode is to be represented as a painting, please provide a short description (one sentence) of the painting. However, please observe the following [Restrictions].
+
+        [Restrictions].
+        - Do not include names of people or other proper nouns.
+        - Do not mix multiple scenes in the screen.
+        - Please start with a general overview and describe the details step by step.
+        - Please write in English.
+        ```
+        意味(日本語訳)
+        ```
+        このエピソードの1シーンを絵画として表現することを想定し、その絵画の簡単な説明（1文）を記入してください。ただし、以下の【制限事項】をお守りください。
+
+        【制限事項】
+        - 人名などの固有名詞を含めないこと。
+        - 画面内に複数のシーンを混在させないでください。
+        - 全体像から始めて、段階的に詳細を記述してください。
+        - 英語で書いてください。
+        ```
+
+        - 回答例
+          ```
+          A powerful superhero, surrounded by a vivid aura representing his shifting emotions, battles menacing villains amidst a chaotic cityscape, with citizens looking on in awe and hope.
+          ```
+
+4. 画像生成AIでプロンプトを張り付けて画像を生成する
+    - 必要に応じて好みの画像のタイプ(例：`Anime,`)などを指定
+    ![](/images/20230327_gof/2023-03-29-15-13-54.png)
+    - 具体的なスタイルについては[こちら](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference)等が参考になります。
+    - 生成された画像例
+      ![](/images/20230327_gof/howto_image_result.jpg)
 
 # さいごに
 ChatGPT(GPT-4)とMidjourneyを使っていてこの本のアイデアを思いついてから2日で仕上がりました(作業時間12時間、そのうち半分くらいはChatGPTのエラー解消待ちやMidjourneyプロンプトがうまくいかない事への対策でした)。これから私もこの本やほかのコンテンツでもっとデザインパターンへの理解を深めたいと思います。
