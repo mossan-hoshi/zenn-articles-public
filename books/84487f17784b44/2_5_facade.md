@@ -1,10 +1,10 @@
 ---
-title: "2_5_Facadeパターン"
+title: "2.5 Facadeパターン"
 ---
 
 # 「壁の向こうの秘密の世界への入り口を探す子供たちの冒険」
 
-![](/images/20230327_gof/A_group_of_excited_children_stand_in_front_of_a_mysterio.png)
+![](/images/20230327_gof/A_group_of_excited_children_stand_in_front_of_a_mysterio.jpg)
 *不思議な壁の前に立つ子どもたちは、目を見開いて驚いています。隠された扉がきらきらと音を立てて開き、その向こうの世界が見えてきます。*
 
 ## 謎の壁
@@ -57,6 +57,10 @@ facade = WallFacade(wall)
 ## 扉が開く
 
 ルーシーは`WallFacade`を使って、壁をノックしたり、押したり、引っ張ったりといろいろな組み合わせを試しました。子どもたちは集まってきて、何かが起こるのを期待しながら待っていました。
+
+:::message
+このコードだといろいろ工夫している感がないですね。この物語全体を書き直したいと思います🚧🚧
+:::
 
 ```python
 def find_secret_combination(facade: WallFacade):

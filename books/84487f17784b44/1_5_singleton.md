@@ -1,10 +1,10 @@
 ---
-title: "1_5_Singletonパターン"
+title: "1.5 Singletonパターン"
 ---
 
 # 「とある村の賢者の栄光と衰退」
 
-![](/images/20230327_gof/In_the_painting_a_wise_figure_stands_atop_a_mountain_ill.png)
+![](/images/20230327_gof/In_the_painting_a_wise_figure_stands_atop_a_mountain_ill.jpg)
 *この絵では、一筋の光に照らされた山の上に賢者が立っており、ソフトウェアの世界におけるSingletonパターンのユニークな役割を象徴しています。*
 
 ## はじまり
@@ -52,6 +52,10 @@ if __name__ == "__main__":
 ## 新しいアプローチ
 村人たちは、増大するニーズにより適した別のデザインパターン(例：「Strategyパターン」「Chain of Responsibilityパターン」等)を採用することにしました。 彼らは評議会を設立し、複数の賢者が協力して指導できるようにしました。
 
+:::message alert
+一般的にはシングルトンに対する改善策としてはDI(依存性注入)等が使われる模様です。詳しくはt_wadaさんによる解説音声([その１](https://fukabori.fm/episode/48)、[その２](https://fukabori.fm/episode/49))をお聴きください
+:::
+
 ```python
 class WiseMan:
     def __init__(self, name):
@@ -81,6 +85,7 @@ council.solve_problem("a drought")
 if name == "main":
 main()
 ```
+
 
 ## レッスン
 

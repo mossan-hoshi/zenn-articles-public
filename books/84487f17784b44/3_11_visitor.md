@@ -1,10 +1,10 @@
 ---
-title: "3_11_Visitorパターン"
+title: "3.11 Visitorパターン"
 ---
 
 # 「異次元からの訪問者が地球の文化に触れる物語」
 
-![](/images/20230327_gof/Anime._In_a_warm_and_lively_town_square_a_diverse_group.png)
+![](/images/20230327_gof/Anime._In_a_warm_and_lively_town_square_a_diverse_group.jpg)
 *温かく活気のある町の広場で、音楽家、画家、料理人など多様な人々が、神秘的でありながら親しみやすい人物を囲み、独自の習慣や伝統を共有しながら、活気と調和のある祝賀会を開いています。*
 
 ## 来訪者の到着

@@ -1,10 +1,10 @@
 ---
-title: "1_1_Factory Methodパターン"
+title: "1.1 Factory Methodパターン"
 ---
 
 # 「宇宙船工場で働くロボットの冒険」
 
-![](/images/20230327_gof/A_group_of_robots_and_human_engineers_work_harmoniously.png)
+![](/images/20230327_gof/A_group_of_robots_and_human_engineers_work_harmoniously.jpg)
 
 ## 新しいロボットワーカー
 

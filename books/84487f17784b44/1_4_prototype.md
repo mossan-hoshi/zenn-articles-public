@@ -1,9 +1,9 @@
 ---
-title: "1_4_Prototypeパターン"
+title: "1.4 Prototypeパターン"
 ---
 
 # 「クローンを作る未来都市での個性を見つける探求」
-![](/images/20230327_gof/A_vibrant_cityscape_filled_with_diverse_colorful_charact_df.png)
+![](/images/20230327_gof/A_vibrant_cityscape_filled_with_diverse_colorful_charact_df.jpg)
 *多様でカラフルなキャラクターが、それぞれの個性を発揮する活気ある街並み。プロトタイプパターンがもたらす新たな創造性と革新性が、彼らの世界を変えています。*
 ## クローンの近未来都市
 

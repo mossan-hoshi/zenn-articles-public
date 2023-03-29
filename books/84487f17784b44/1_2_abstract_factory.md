@@ -1,9 +1,9 @@
 ---
-title: "1_2_Abstract Factoryパターン"
+title: "1.2 Abstract Factoryパターン"
 ---
 
 # 「魔法のお菓子王国で繰り広げられるお菓子一家の物語」
-![](/images/20230327_gof/A_bustling_celebration_scene_in_a_colorful_magical_candy.png)
+![](/images/20230327_gof/A_bustling_celebration_scene_in_a_colorful_magical_candy.jpg)
 
 ## はじめに
 昔々、魔法のお菓子王国では、有名な菓子職人一家が年に一度のお菓子祭りの準備で忙しくしていました。この一族は、お祭りのために最も精巧でおいしいお菓子を作るのが仕事でした。彼らは`AbstractCandyFactory`を使って、ユニークなフレーバーや形をしたさまざまなキャンディーを製造していました。

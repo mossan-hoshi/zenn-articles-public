@@ -1,10 +1,10 @@
 ---
-title: "3_1_Chain of Responsibilityパターン"
+title: "3.1 Chain of Responsibilityパターン"
 ---
 
 # 「ドミノ倒しで繋がる小さな動物たちの協力物語」
 
-![](/images/20230327_gof/Disney_Pixar_Style_A_squirrel_bird_and_rabbit_work_toget.png)
+![](/images/20230327_gof/Disney_Pixar_Style_A_squirrel_bird_and_rabbit_work_toget.jpg)
 *リス、鳥、ウサギが息の合ったコンビネーションで、ドミノの列を組んでバリアを作り、その背景には鮮やかな森が広がっています。*
 
 

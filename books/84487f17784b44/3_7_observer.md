@@ -1,10 +1,10 @@
 ---
-title: "3_7_Observerパターン"
+title: "3.7 Observerパターン"
 ---
 
 # 「天文台で働く若者が星の動きによるサインを解読する物語」
 
-![](/images/20230327_gof/A_young_astronomer_gazes_at_a_starry_sky_through_a_teles.png)
+![](/images/20230327_gof/A_young_astronomer_gazes_at_a_starry_sky_through_a_teles.jpg)
 *若い天文学者が古い天文台の上にある望遠鏡で星空を眺め、その背後では村人が天のお告げのもと、さまざまな行事の準備を進めている。*
 
 ## はじめに 天文台と若き天文家たち

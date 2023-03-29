@@ -1,10 +1,10 @@
 ---
-title: "2_3_Compositeパターン"
+title: "2.3 Compositeパターン"
 ---
 
 # 「雪の森のユナイテッドツリー」
 
-![](/images/20230327_gof/A_group_of_trees_interconnected_and_glowing_with_a_myste.png)
+![](/images/20230327_gof/A_group_of_trees_interconnected_and_glowing_with_a_myste.jpg)
 *雪景色を背景に、互いにつながり、神秘的なエネルギーを放つ木々が力強く立ち並び、敗れた木こりが背を向ける姿は、結束と協力の力を物語っています。*
 
 ## 自然界における複合パターン

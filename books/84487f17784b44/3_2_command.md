@@ -1,10 +1,10 @@
 ---
-title: "3_2_Commandパターン"
+title: "3.2 Commandパターン"
 ---
 
 # 「時間を操る時計を使って歴史を守るタイムトラベラーの物語」
 
-![](/images/20230327_gof/A_time_traveler_stands_beside_an_ancient_clock_its_hands.png)
+![](/images/20230327_gof/A_time_traveler_stands_beside_an_ancient_clock_its_hands.jpg)
 *タイムトラベラーが古時計のそばに立ち、その針が時を超えて渦を巻きながら、歴史的な出来事の渦を巻き起こします。*
 
 ## タイムトラベラーと時計

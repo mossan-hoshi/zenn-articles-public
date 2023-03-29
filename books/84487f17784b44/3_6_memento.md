@@ -1,10 +1,10 @@
 ---
-title: "3_6_Mementoパターン"
+title: "3.6 Mementoパターン"
 ---
 
 # 「失われた記憶を取り戻すためのタイムカプセルを発見する友達の物語」
 
-![](/images/20230327_gof/A_group_of_friends_surrounded_by_a_warm_glow_gather_arou.png)
+![](/images/20230327_gof/A_group_of_friends_surrounded_by_a_warm_glow_gather_arou.jpg)
 *温かい光に包まれた友人たちが、開いたタイムカプセルを囲み、喜びと懐かしさに満ちた表情で、共通の過去から大切な思い出の品々を手にしています。*
 
 ## タイムカプセルの発見

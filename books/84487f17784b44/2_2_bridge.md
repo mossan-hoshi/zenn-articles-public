@@ -1,10 +1,10 @@
 ---
-title: "2_2_Bridgeパターン"
+title: "2.2 Bridgeパターン"
 ---
 
 # 「統一された努力で島の架け橋になる」
 
-![](/images/20230327_gof/A_diverse_group_of_people_from_two_islands_work_together.png)
+![](/images/20230327_gof/A_diverse_group_of_people_from_two_islands_work_together.jpg)
 *2つの島の多様な人々が協力し合い、木と石を組み合わせたユニークな橋を巧みに作りながら、川を渡っていく。*
 
 ## はじめに

@@ -1,10 +1,10 @@
 ---
-title: "2_7_Proxyパターン"
+title: "2.7 Proxyパターン"
 ---
 
 # 「おとぎ話の世界で他のキャラクターに化ける魔法使いの冒険」
 
-![](/images/20230327_gof/a_diverse_group_of_charact.png)
+![](/images/20230327_gof/a_diverse_group_of_charact.jpg)
 *騎士、王女、農夫など、さまざまなキャラクターに変身した魔法使いが、魔法のオーラに包まれて佇んでいます。*
 
 ## 第1章 魔法的任務

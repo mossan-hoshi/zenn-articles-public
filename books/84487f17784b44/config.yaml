@@ -1,7 +1,7 @@
 title: "デザインパターンの絵本"
-summary: "GoF(Gang of Four)のデザインパターン23パターンについてそれぞれ個別の物語形式で学べる本です。カバー画像でイメージを膨らませ、更にコードサンプルで実際の実装イメージをつかむことができます"
-topics: ["デザインパターン","GoF","物語"]
-published: false
+summary: "GoF(Gang of Four)のデザインパターン23パターンそれぞれを個別の物語形式で学べる本です。カバー画像でイメージを膨らませ、物語の内容に沿ったコードサンプルで実際の実装イメージをつかむことができます"
+topics: ["デザインパターン","GoF","図解","GPT4","ChatGPT"]
+published: true
 price: 0 # 有料の場合200〜5000
 # 本に含めるチャプターを順番に並べましょう
 chapters:
@@ -32,3 +32,4 @@ chapters:
   - 3_9_strategy
   - 3_10_template_method
   - 3_11_visitor
+  - closing

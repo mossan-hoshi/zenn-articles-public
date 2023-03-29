@@ -1,10 +1,10 @@
 ---
-title: "3_9_Strategyパターン"
+title: "3.9 Strategyパターン"
 ---
 
 # 「チェス大会で優勝を目指す少年の戦略的な物語」
 
-![](/images/20230327_gof/In_this_painting_two_young_focused_chess_players_sit_fac.png)
+![](/images/20230327_gof/In_this_painting_two_young_focused_chess_players_sit_fac.jpg)
 *この絵では、集中力のある若い2人のチェスプレーヤーが、机を挟んで手強い相手と向かい合って座り、机に置かれたチェス盤の上に手を置いて次の一手を考えているところを、チェスマスターが傍観している。*
 
 ## 少年の夢

@@ -1,10 +1,10 @@
 ---
-title: "3_8_Stateパターン"
+title: "3.8 Stateパターン"
 ---
 
 # 「感情によって能力が変わるスーパーヒーローの冒険」
 
-![](/images/20230327_gof/A_powerful_superhero_surrounded_by_a_vivid_aura_represen.png)
+![](/images/20230327_gof/A_powerful_superhero_surrounded_by_a_vivid_aura_represen.jpg)
 *感情の移り変わりを表す鮮やかなオーラに包まれたスーパーヒーローが、混沌とした街並みの中で脅威のヴィランと戦い、市民は畏怖と希望を抱いている。*
 
 

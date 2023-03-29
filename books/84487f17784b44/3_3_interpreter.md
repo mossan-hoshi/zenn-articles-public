@@ -1,10 +1,10 @@
 ---
-title: "3_3_Interpreterパターン"
+title: "3.3 Interpreterパターン"
 ---
 
 # 「言語を操る魔法使いが世界の謎を解き明かす冒険」
 
-![](/images/20230327_gof/A_young_wizard_surrounded_by_ancient_books_and_scrolls_s.png)
+![](/images/20230327_gof/A_young_wizard_surrounded_by_ancient_books_and_scrolls_s.jpg)
 *古代の書物や巻物に囲まれた若い魔法使いが、謎の石版を研究し、魔法を使ってシンボルを解読し、隠された知識を明らかにしていきます。*
 
 ## 魔法の言葉

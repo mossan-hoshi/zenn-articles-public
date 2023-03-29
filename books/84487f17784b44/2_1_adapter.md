@@ -1,10 +1,10 @@
 ---
-title: "2_1_Adapterパターン"
+title: "2.1 Adapterパターン"
 ---
 
 # 「アダプターパターンで調和するジャングル」
 
-![](/images/20230327_gof/A_diverse_group_of_animals_gathers_around_a_water_source.png)
+![](/images/20230327_gof/A_diverse_group_of_animals_gathers_around_a_water_source.jpg)
 *ジャングルの水源に集まる多様な動物たちが、生命力あふれる水を飲み、分かち合うために調和しています。*
 ## ジャングルのジレンマ
 

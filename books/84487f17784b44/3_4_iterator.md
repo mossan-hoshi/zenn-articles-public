@@ -1,10 +1,10 @@
 ---
-title: "3_4_Iteratorパターン"
+title: "3.4 Iteratorパターン"
 ---
 
 # 「珍しい植物を探すため、園芸家が庭園を巡る物語」
 
-![](/images/20230327_gof/A_horticulturist_carefully_navigates_through_a_lush_gard.png)
+![](/images/20230327_gof/A_horticulturist_carefully_navigates_through_a_lush_gard.jpg)
 *園芸家が、希少種への道を照らす魔法の本に導かれながら、鮮やかで多様な植物が生い茂る緑豊かな庭園を慎重に進んでいきます。*
 
 

@@ -1,10 +1,10 @@
 ---
-title: "1_3_Builderパターン"
+title: "1.3 Builderパターン"
 ---
 
 # 「砂漠のオアシスで家を建てる旅人の挑戦」
 
-![](/images/20230327_gof/A_determined_traveler_stands_in_the_warm_glow_of_the_set.png)
+![](/images/20230327_gof/A_determined_traveler_stands_in_the_warm_glow_of_the_set.jpg)
 *夕陽に照らされながら、砂漠のオアシスの風景に溶け込む新築のアドビハウスに見入る旅人*
 
 ## 1. はじめに

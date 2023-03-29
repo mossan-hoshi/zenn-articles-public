@@ -1,5 +1,5 @@
 ---
-title: "3_10_Template Methodパターン"
+title: "3.10 Template Methodパターン"
 ---
 
 # 「料理学校で独自のレシピを発展させる生徒たちの物語」

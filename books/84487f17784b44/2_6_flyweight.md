@@ -1,10 +1,10 @@
 ---
-title: "2_6_Flyweightパターン"
+title: "2.6 Flyweightパターン"
 ---
 
 # 「蜂の巣で働くハチたちが効率よく花の蜜を集める物語」
 
-![](/images/20230327_gof/A_vibrant_meadow_filled_with_colorful_flowers_as_bees_of.png)
+![](/images/20230327_gof/A_vibrant_meadow_filled_with_colorful_flowers_as_bees_of.jpg)
 *色とりどりの花が咲き乱れる鮮やかな草原で、さまざまな種類のミツバチが協力して効率よく蜜を集め、繁栄するミツバチの巣の調和に貢献しています。*
 
 ## ビーハイブ（The Beehive）
