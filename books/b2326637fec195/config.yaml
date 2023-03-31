@@ -1,0 +1,23 @@
+title: "デザインパターンの絵本"
+summary: "主要なソフトウェアアーキテクチャパターンそれぞれを個別の物語形式で学べる本です。カバー画像でイメージを膨らませ、物語の内容に沿ったコードサンプルやクラス図で実際の実装イメージをつかむことができます"
+topics: ["ソフトウェアアーキテクチャ","図解","GPT4","ChatGPT","クリーンアーキテクチャ"]
+published: false
+price: 0 # 有料の場合200〜5000
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  - 0_front_matter
+  - 1_monolithic
+  - 2_layered_architecture
+  - 3_pipeline_architecture
+  - 4_microkernel
+  - 5_service_oriented
+  - 6_event_driven
+  - 7_space-based
+  - 8_orchestration_driven
+  - 9_microservices
+  - 10_modular_monolith
+  - 11_serverless
+  - 12_clean_architecture
+  - 13_onion_architecture
+  - closing
+  

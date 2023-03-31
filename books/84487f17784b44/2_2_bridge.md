@@ -7,9 +7,9 @@ title: "2.2 Bridgeパターン"
 ![](/images/20230327_gof/A_diverse_group_of_people_from_two_islands_work_together.jpg)
 *2つの島の多様な人々が協力し合い、木と石を組み合わせたユニークな橋を巧みに作りながら、川を渡っていく。*
 
-## はじめに
+## 始めに
 
-かつてひとつだったふたつの島は、危険な川によって分断されてしまった。両島の住民は、再びつながり、関係を再構築することを切望していたが、橋が必要であった。そこで、橋の設計と実装を分離するために、Bridgeパターンを使用することにした。
+かつてひとつだった2つの島は、危険な川によって分断されてしまった。両島の住民は、再びつながり、関係を再構築することを切望していたが、橋が必要であった。そこで、橋の設計と実装を分離するために、Bridgeパターンを使用することにした。
 
 ## 島をつなぐBridgeパターン
 
@@ -20,19 +20,23 @@ from abc import ABC, abstractmethod
 
 # アブストラクション ブリッジデザイン
 class Bridge(ABC):
+    # コンストラクターで実装を受け取る
 
     def __init__(self, implementation):
-        self.implementation = implementation
+        self.implementation = implementation # 実装を保持する
 
     @abstractmethod
     def construct(self):
+        # 実装を使って橋を建設する(抽象メソッド)
         pass
 
-# インプリメンテーション 構築技術
+# 実装 構築技術
 class BridgeImplementation(ABC):
+    # 橋を建設する
 
     @abstractmethod
     def build(self):
+        # 橋を建設する(抽象メソッド)
         pass
 ```
 
@@ -43,26 +47,30 @@ A島は木材が豊富で、B島は石材が豊富であった。両島の住民
 ```python
 # 具体的な実装
 class WoodenBridge(BridgeImplementation):
+    # 木材製の橋の建設
 
     def build(self):
-        return "木造の橋"
+        return "木造の橋" # 橋を建設する
 
 class StoneBridge(BridgeImplementation):
+    # 石橋用の建設
 
     def build(self):
-        return "石の橋"
+        return "石の橋" # 橋を建設する
 ```
 
-## 橋梁工事におけるコラボレーション
+## 橋梁工ことにおけるコラボレーション
 
 コミュニケーションと協力を促進するために、両島の代表者からなる委員会を設立した。委員会は橋のデザインの抽象化として、全体的な構造と外観を定義する一方、建設の詳細は実装に委ねることになった。
 
 ```python
 # 洗練された抽象性
 class IslandBridge(Bridge):
+    # 親クラス(Bridge）のコンストラクタでimplementationを受け取っている
 
     def construct(self):
-        return f"Island bridge made of {self.implementation.build()}"
+        # implementation実装を使って橋を建設する
+        return f"{self.implementation.build()}でできた島橋"
 
 # ブリッジの実装を作成する
 wooden_bridge = WoodenBridge()
@@ -75,7 +83,7 @@ bridge_B = IslandBridge(stone_bridge)
 
 ## 力を合わせれば、成功する
 
-工事が始まると、2つの島は資源やノウハウを交換し合いながら協力し合った。木の橋はA島から川の真ん中まで、石の橋はB島から真ん中で合流するように建設された。
+工ことが始まると、2つの島は資源やノウハウを交換し合いながら協力し合った。木の橋はA島から川の真ん中まで、石の橋はB島から真ん中で合流するように建設された。
 
 ```python
 # 橋を架ける
