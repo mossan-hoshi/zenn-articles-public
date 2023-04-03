@@ -72,7 +72,6 @@ agricultural_interface = Interface("AgriculturalInterface", ["provide_food"])
 調和のとれた自律的なコミュニティの物語は、モジュラーモノリシックアーキテクチャの利点と課題を示しています。自律と協調のバランス、そして明確に定義された境界線の重要性を理解することで、この建築的アプローチの長所と短所をより理解できます。
 
 ```mermaid
-Copy code
 classDiagram
     class Borough {
         +name: str

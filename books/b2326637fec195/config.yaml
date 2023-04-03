@@ -1,11 +1,12 @@
-title: "デザインパターンの絵本"
-summary: "主要なソフトウェアアーキテクチャパターンそれぞれを個別の物語形式で学べる本です。カバー画像でイメージを膨らませ、物語の内容に沿ったコードサンプルやクラス図で実際の実装イメージをつかむことができます"
-topics: ["ソフトウェアアーキテクチャ","図解","GPT4","ChatGPT","クリーンアーキテクチャ"]
-published: false
+title: "【図解】ストーリーでわかる！ソフトウェアアーキテクチャ14選"
+summary: "主要なソフトウェアアーキテクチャそれぞれを個別の物語形式で学べる本です。カバー画像でイメージを膨らませ、物語の内容に沿ったコードサンプルやクラス図で実際の実装イメージをつかむことができます"
+topics: ["ソフトウェアアーキテクチャ","図解","GPT4","ChatGPT","MidJourney"]
+published: true
 price: 0 # 有料の場合200〜5000
 # 本に含めるチャプターを順番に並べましょう
 chapters:
-  - 0_front_matter
+  - 0_1_front_matter
+  - 0_2_architectures
   - 1_monolithic
   - 2_layered_architecture
   - 3_pipeline_architecture

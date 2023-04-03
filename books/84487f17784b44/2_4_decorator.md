@@ -9,90 +9,74 @@ title: "2.4 Decoratorパターン"
 
 ## オーナメントの魔力覚醒
 
-昔々、ある居心地の良い小さな町で、村人たちは1年で最も不思議な時間を過ごすための準備をしていました。クリスマスです！どの家もきらめく光やリースで家を飾り、もちろんオーナメントで飾られた美しいクリスマスツリーも用意しました。
+かつて、クリスマスツリーの飾りが一夜に命を持つという不思議な街がありました。街の人々は、クリスマスの前日にツリーの飾りを作り、ツリーに飾りました。そして真夜中に、それらの飾りは魔法で命を持ち、夜通し楽しく遊びました。
 
-## 魅惑のオーナメント
+## デコレータパターンの特徴
+デコレータパターンは、既存のオブジェクトに新しい機能を追加したい場合に役立ちます。この物語では、各クリスマスツリーの飾りは、基本的な飾りの機能にさまざまな追加機能を持っています。以下は、デコレータパターンの特徴です。
 
-ある家では、木の枝に天使のような形をした小さな飾りがぶら下がっていました。この置物はほかのものとは違いました。なんと命を吹き込む力をもつ魔法をかけられていたのです！
+- 柔軟性が高い
+- 機能を動的に追加できる
+- 継承よりも優れた拡張性
 
-:::message
-Pythonにデコレーター機能があるのにそれを使っていないのはいただけないですね。この物語全体を書き直したいと思います🚧🚧
-:::
-
-```python
-# ベースとなるコンポーネント
-class ChristmasTree:
-    def decorate(self):
-        return "クリスマスツリーは"
-
-# デコレータクラス
-class OrnamentDecorator(ChristmasTree):
-    def __init__(self, tree: ChristmasTree):
-        self.tree = tree
-
-    def decorate(self):
-        return f"{self.tree.decorate()} {self.__class__.__name__},"
-
-class AngelOrnament(OrnamentDecorator):
-    pass
-
-tree = ChristmasTree()
-tree_with_angel = AngelOrnament(tree)
-```
-
-## 生命の奇跡
-
-クリスマスイブの夜、天使のオーナメントは突然命を吹き込まれました。天使のオーナメントは、家の中を見回すと、喜びと愛に満ちているのがわかりました。天使は、ツリーの上のほかのオーナメントにも幸せをもたらしたいという強い思いを抱きました。
+実際のコードでデコレータパターンを表現するために、Pythonのデコレータを使って実装します。
 
 ```python
-class StarOrnament(OrnamentDecorator):
-    pass
+from functools import wraps
 
-class BellOrnament(OrnamentDecorator):
-    pass
+def star_decorator(f):
+    @wraps(f) # デコレータの中でデコレータを使う場合は、wrapsを使う
+    def wrapper(*args, **kwargs):
+        print("☆を追加") # 関数の前に実行する処理
+        f(*args, **kwargs) # 関数の実行
+    return wrapper
 
-tree_with_star = StarOrament(tree_with_angel)
-tree_with_bell = BellOrnament(tree_with_star)
+def bell_decorator(f):
+    @wraps(f) # デコレータの中でデコレータを使う場合は、wrapsを使う 
+    def wrapper(*args, **kwargs):
+        print("ベルを追加") # 関数の前に実行する処理
+        f(*args, **kwargs) # 関数の実行
+    return wrapper
+
+@bell_decorator
+@star_decorator
+def decorate_tree():
+    print("ツリーに飾りをつける")
+
+decorate_tree() # ベルを追加 ☆を追加 ツリーに飾りをつける
 ```
 
-## 魔法を広める
+このコードでは、star_decoratorとbell_decoratorという2つのデコレータが定義されています。これらのデコレータを使って、decorate_tree関数に動的に機能を追加しています。
 
-天使のオーナメントは、その魔法の力でほかのオーナメントに命を吹き込みました。輝く星、鳴り響く鐘、そしてツリーに飾られたほかのユニークな装飾品たち。
-
-```python
-class SnowflakeOrnament(OrnamentDecorator):
-    pass
-
-tree_with_snowflake = SnowflakeOrnament(tree_with_bell)
+```mermaid
+classDiagram
+    Component <|-- OrnamentDecorator
+    OrnamentDecorator <|-- StarDecorator
+    OrnamentDecorator <|-- BellDecorator
+    OrnamentDecorator o-- Component
 ```
+このダイアグラムでは、Componentクラスが基本クラスであり、OrnamentDecoratorがデコレータクラスです。さらに、StarDecoratorとBellDecoratorはOrnamentDecoratorクラスを継承しています。また、OrnamentDecoratorクラスはComponentクラスとの関係を持っています。これにより、デコレータパターンの構造が表現されています。
 
-## ア・ジョイフルセレブレーション
+## デコレータパターンの利点
+デコレータパターンには以下のような利点があります。
 
-それぞれのオーナメントに命が吹き込まれると、彼らは喜び、クリスマスの精神を祝いました。オーナメントたちはキャロルを歌い、物語を語り、自分たちを取り巻く温もりと愛に驚嘆しました。
+- コードの再利用性を向上させる
+- 動的に機能を追加できる
+- 単一責任の原則に従う
+- 
+街の人々は、飾りの機能を追加するためにデコレータパターンを活用していました。例えば、星の飾りを追加したり、鈴の飾りを追加したりできます。これにより、機能を再利用でき、様々な組み合わせの飾りを作成できました。
 
-```python
-def display_tree(tree: ChristmasTree):
-    print(tree.decorate())
+## デコレータパターンの欠点
+デコレータパターンにもいくつかの欠点があります。
 
-display_tree(tree_with_snowflake)
-```
+- 多くの小さなオブジェクトが生成される
+- コードの複雑性が増す
+- 
+デコレータパターンを使うと、多くの小さなオブジェクトが生成されることになります。これにより、コードの複雑性が増すことがあります。また、デコレータの使用が過剰になると、コードの可読性が低下することもあります。
 
-## それぞれの居場所への回帰
+## 欠点への対策
+デコレータパターンの欠点に対処する方法としては、以下のような方法が考えられます。
 
-夜が更けるにつれ、オーナメントたちは、クリスマスの朝、家族が目覚める前に元の状態に戻らなければならないことに気付きました。そこで、オーナメントたちはお互いに別れを告げ、魔法を使って元の無機質な飾りに戻りました。
-
-## 思い出に残る
-
-オーナメントは元の状態に戻りましたが、あの特別な夜に共有した魔法は生き続けています。毎年、家族がツリーを飾るとき、オーナメントに命が宿ったあの忘れられないクリスマスイブの温もりと喜びを感じることができたのです。
-
-こうして、魔法のクリスマスツリーのオーナメントの物語は、家族にとって大切な思い出となり、何世代にもわたって語り継がれるようになりました。魔法の天使のオーナメントは、毎年クリスマスイブになるとほかのオーナメントに命を吹き込み、魔法をかけ続け、愛、喜び、一体感というこの季節の真の精神をみんなに思い出させるのです。
-
-```python
-# 魔法は毎年起こる
-for year in range(2023, 2030):
-    print(f"Year {year}:")
-    display_tree(tree_with_snowflake)
-    print()
-```
-
-これは、クリスマスツリーのオーナメントに命が宿り、ほかのオーナメントとそれを大切にする家族に幸せと団結をもたらすという魔法の物語で、Decoratorパターンがどのような役割を果たしたかという話です。PythonのコードとDecoratorパターンを使うことで、物語の中で魔法をかけられた天使のオーナメントのように、ツリーに新しいオーナメントを動的に追加し、そのユニークな効果を体験できたのです。
+- デコレータの使用を最小限に抑える
+- コンポジットパターンを併用する
+- 
+デコレータの使用を最小限に抑えることで、コードの複雑性を軽減できます。また、コンポジットパターンを併用することで、デコレータパターンと組み合わせて効果的にコードの構造を改善できます。

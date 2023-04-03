@@ -4,7 +4,7 @@ title: "3.5 Mediatorパターン"
 
 # 「対立する部族が仲介者の力で和解を目指す物語」
 
-![](/images/20230327_gof/A_wise_mediator_stands_between_the_leaders_of_two_once-w.jpg)
+![](/images/20230327_gof/high_quality_an_indian_and_a_german_statue_shake_hands_a_a961b34a-e289-4ef8-968b-cfc843dc760e.jpg)
 *かつて対立していた2つの部族の指導者の間に立ち、両手を広げ、青空の下で握手を交わし、コミュニケーションによってもたらされた新たな平和と協力の証とする。*
 
 ## 戦国時代の部族

@@ -6,91 +6,108 @@ title: "1.1 Factory Methodパターン"
 
 ![](/images/20230327_gof/A_group_of_robots_and_human_engineers_work_harmoniously.jpg)
 
-## 新しいロボットワーカ
+## ファクトリーメソッドパターンの特徴
+ある宇宙船工場では、様々な種類のロボット労働者が働いています。これらのロボットは、異なる部門で専門的な仕事を行っています。例えば、電子部品を組み立てるロボットや、エンジンの修理を担当するロボットなどです。
 
-遠い惑星にある広大な宇宙船工場で、Robo-1という新しいロボット労働者が生産チームに加わりました。その工場は、さまざまな種類の宇宙船を製造していることで有名で、それぞれにユニークな機能と性能を備えていました。ファクトリメソッドというパターンを使って、Robo-1挟まざまな宇宙船を簡単に作ることができることを知りました。
-
-## ファクトリメソッドパターンを理解する
-Robo-1が活動を開始すると、貨物船、旅客船、軍艦など、さまざまな宇宙船モデルがあることが確認されました。これらのモデルを作るために、ファクトリは共通のインタフェースである`SpaceshipCreator`を使い、`create_spaceship()`というメソッドを持っています。このインタフェースにより、ファクトリは具体的なクラスを指定することなく、さまざまなタイプの宇宙船を作り出すことができるようになりました。
+この宇宙船工場では、新しいロボット労働者を生産するためにファクトリーメソッドパターンが使われています。ファクトリーメソッドパターンは、オブジェクトの生成をサブクラスに任せることで、オブジェクト生成の詳細を隠蔽します。
 
 ```python
+
 from abc import ABC, abstractmethod
 
-class SpaceshipCreator(ABC):
-    # 宇宙船を作るクラスのインターフェイス
+class RobotFactory(ABC):
+    # ロボットを生成するファクトリークラス
 
     @abstractmethod
-    def create_spaceship(self):
-        # 宇宙船を作るメソッド(抽象メソッド)
+    def create_robot(self):
         pass
-```
 
-Robo-1は、スペースシップのモデルごとに、`SpaceshipCreator`インタフェースを実装した独自のクリエータクラスが存在することに気付きました。これらの具体的なクリエータークラスは、特定のスペースシップインスタンスを作成する役割を担っていました。
+class ElectronicAssemblerFactory(RobotFactory):
+    # 電子部品を組み立てるロボットを生成するファクトリークラス
+    def create_robot(self):
+        return ElectronicAssembler()
 
-```python
-class CargoShipCreator(SpaceshipCreator):
-    # 貨物船を作るクラス
+class EngineRepairerFactory(RobotFactory):
+    # エンジンの修理を担当するロボットを生成するファクトリークラス
+    def create_robot(self):
+        return EngineRepairer()
 
-    def create_spaceship(self):
-        return CargoShip() # 貨物船を作るメソッド
-
-class PassengerShipCreator(SpaceshipCreator):
-    # 旅客船を作るクラス
-
-    def create_spaceship(self):
-        return PassengerShip() # 旅客船を作るメソッド
-
-class MilitaryShipCreator(SpaceshipCreator):
-    # 軍用船を作るクラス
-
-    def create_spaceship(self):
-        return MilitaryShip() # 軍用船を作るメソッド
-```
-
-## 宇宙船を創る
-
-さらにRobo-1は、すべての宇宙船モデルが`Spaceship`という共通の基本クラスを共有していることに気付きました。このクラスは、`launch()`や`land()`のように、すべての宇宙船が使う共通のプロパティとメソッドを定義しています。
-
-```python
-class Spaceship(ABC):
-    # 宇宙船の共通のプロパティとメソッドを定義するクラス
-
+class Robot(ABC):
+    # ロボットクラス(抽象クラス)
     @abstractmethod
-    def launch(self):
-        # 宇宙船を発進させるメソッド(抽象メソッド)
+    def work(self):
         pass
 
-    @abstractmethod
-    def land(self):
-        # 宇宙船を着艦させるメソッド(抽象メソッド)
-        pass
+class ElectronicAssembler(Robot):
+    # 電子部品を組み立てるロボット(具体的なロボットクラス)
+    def work(self):
+        return "組立て中"
+
+class EngineRepairer(Robot):
+    # エンジンの修理を担当するロボット(具体的なロボットクラス)
+    def work(self):
+        return "修理中"
 ```
 
-各スペースシップモデルには、ベースクラスである`Spaceship`を継承した固有のクラスが存在します。これらのクラスは、各スペースシップ・モデルのユニークな機能と動作を実装しています。
+```mermaid
+classDiagram
+    RobotFactory <|.. ElectronicAssemblerFactory
+    RobotFactory <|.. EngineRepairerFactory
+    class Robot{
+        +work()
+    }
+    class RobotFactory{
+        +create_robot() : Robot
+    }
+    class ElectronicAssemblerFactory{
+        +create_robot() : ElectronicAssembler
+    }
+    class EngineRepairerFactory{
+        +create_robot() : EngineRepairer
+    }
+    Robot <|.. ElectronicAssembler
+    Robot <|.. EngineRepairer
+    class ElectronicAssembler{
+        +work()
+    }
+    class EngineRepairer{
+        +work()
+    }
+```
+
+上記のPythonコードは、ファクトリーメソッドパターンを実装した例です。RobotFactoryは抽象クラスで、具体的なファクトリーであるElectronicAssemblerFactoryとEngineRepairerFactoryがそれを継承しています。各ファクトリークラスは、create_robotメソッドを持っており、それぞれの専門分野のロボットを生成します。Robotは抽象クラスで、具体的なロボットクラスがそれを継承しています。
+
+## ファクトリーメソッドパターンの利点
+ファクトリーメソッドパターンの利点は以下の通りです。
+
+- **オブジェクト生成の詳細を隠蔽**: ロボット生成のプロセスが変更された場合でも、コード全体に影響を与えずに変更ができます。
+- **柔軟性**: 新しい種類のロボットを追加する際、既存のコードを変更せずに新たなファクトリークラスを追加するだけで対応できます。
+- **一貫性**: 同じ種類のオブジェクト生成は、すべての場所でファクトリーメソッドを使用することで一貫性が保たれます。
+
+では、各ファクトリーを使って実際にロボットを生成してみましょう。
 
 ```python
-class CargoShip(Spaceship):
-    def launch(self):
-        print("貨物船発進...")
-        
-    def land(self):
-        print("貨物船着艦...")
 
-class PassengerShip(Spaceship):
-    def launch(self):
-        print("旅客船発進...")
-        
-    def land(self):
-        print("旅客船着艦...")
+def main():
+    factories = [ElectronicAssemblerFactory(), EngineRepairerFactory()]
 
-class MilitaryShip(Spaceship):
-    def launch(self):
-        print("軍用船発進...")
-        
-    def land(self):
-        print("軍用船着艦...")
+    for factory in factories:
+        robot = factory.create_robot()
+        print(robot.work())
+
+if __name__ == "__main__":
+    main()
 ```
 
+このmain関数では、ElectronicAssemblerFactoryとEngineRepairerFactoryのインスタンスをリストに格納しています。次に、forループで各ファクトリーからロボットを生成し、workメソッドを実行しています。これにより、各ロボットがどのように働くかが分かります。
 
-## まとめ
-ファクトリメソッドパターンを使うことで、Robo-1は具体的なクラスを知らなくても簡単に新しいスペースシップインスタンスを作ることができます。ファクトリは、特定のクリエーター・クラスの`create_spaceship()`メソッドを呼び出すだけで、新しいスペース・シップのインスタンスを作成できるのです。
+## ファクトリーメソッドパターンの欠点
+ファクトリーメソッドパターンにもいくつかの欠点があります。
+
+- **クラス数が増加**: 各オブジェクトに対してファクトリークラスが必要になるため、クラス数が増加します。
+- **複雑性が増す**: ファクトリーメソッドパターンを使用すると、コードの複雑性が増すことがあります。
+
+## 欠点への対策
+欠点への対策として、他のデザインパターンを検討できます。例えば、単純なオブジェクト生成が目的であれば、シンプルファクトリーパターンを使用できます。また、複雑なオブジェクト生成が必要な場合は、抽象ファクトリーパターンやビルダーパターンを検討できます。
+
+最後に、ファクトリーメソッドパターンを使用するかどうかは、プロジェクトの要件や目的によって決定されるべきです。適切なデザインパターンを選択することで、コードの品質や保守性を向上させることができます。

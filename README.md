@@ -1,6 +1,10 @@
-# Zenn同人本「デザインパターンの絵本」公開リポジトリ
-[![](/books/84487f17784b44/cover.png)](https://zenn.dev/mossan_hoshi/books/84487f17784b44)
+# mossan-hoshi Zenn公開リポジトリ
+このリポジトリではZennのアカウントmossan-hoshiの公開リポジトリです。共同編集可能な書籍などを公開しています。
 
+
+# 共有しているコンテンツ
+1. 同人本「デザインパターンの絵本」
+    <img src="/books/84487f17784b44/cover.png)](https://zenn.dev/mossan_hoshi/books/84487f17784b44" width="画像のサイズ">
 
 このリポジトリではZennで公開されている同人本「[デザインパターンの絵本](https://zenn.dev/mossan_hoshi/books/84487f17784b44)」の公開リポジトリです。
 この本はChatGPT(GPT-4)とMidjourneyで書かれており、書き方も公開されています。

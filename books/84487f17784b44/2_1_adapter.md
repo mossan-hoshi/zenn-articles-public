@@ -5,61 +5,97 @@ title: "2.1 Adapterパターン"
 # 「アダプタパターンで調和するジャングル」
 
 ![](/images/20230327_gof/A_diverse_group_of_animals_gathers_around_a_water_source.jpg)
-*ジャングルの水源に集まる多様な動物たちが、生命力あふれる水を飲み、分かち合うために調和しています。*
+*ジャングルの多様な動物たちが、にぎやっかな鳴き声を挙げながら、分かち合うために調和しています。*
 ## ジャングルのジレンマ
 
-昔々、うっそうとしたジャングルの中で、さまざまな動物たちが仲良く暮らしていました。動物たちは、それぞれの違いを感じながらも共存し、困ったときには助け合いながら暮らしていました。ある日、ジャングルは干ばつに見舞われ、動物たちは水のぶん配システムを作ることにしました。
+あるジャングルでは、さまざまな動物たちが共存して暮らしていました。しかし、異なる種族の動物たちが互いにコミュニケーションをとることは難しく、誤解やトラブルが絶えませんでした。そこで、ジャングルのリーダーはアダプターパターンを導入することにしました。
 
-## アダプタパターンが窮地を救う
+アダプターパターンは、異なるインターフェイスをもつクラス同士をつなぐ役割を果たします。これにより、異なる動物たちが同じ言葉でコミュニケーションをとることができるようになりました。
+
+## アダプターパターンの特徴
+アダプターパターンの導入により、ジャングルでは以下のような特徴が現れました。
+
+- 既存のクラスを修正せずに、新しいインターフェイスを利用できる
+- 異なるインターフェイスを持つクラス間の互換性を確保できる
+- クラスの再利用が容易になる
+
+アダプターパターンを用いることで、ジャングルの動物たちは、互いの違いを受け入れながらも円滑にコミュニケーションができるようになりました。また、新しい動物がジャングルにやって来ても、アダプターを使って既存の動物たちとコミュニケーションできるようになりました。
+
+## アダプターパターンの利点
+アダプターパターンの導入により、ジャングルの動物たちは以下のような利点を享受できました。
+
+- 互換性のないインターフェイス間の連携が可能になる
+- 既存のクラスを変更せずに新しいインターフェイスを利用できる
+- コードの再利用がしやすくなる
+
+## アダプターパターンの欠点
+しかし、アダプターパターンには以下のような欠点も存在します。
+
+- アダプターのクラスが増えることで、システムの複雑さが増す
+- アダプターを作成する手間がかかる
+
+## 欠点への対策
+アダプターパターンの欠点に対処するために、動物たちは以下のような対策を講じました。
+
+- アダプターの役割を明確にし、適切な粒度で設計する
+- 必要に応じて、別のデザインパターンへ移行する（例：ブリッジパターン）
+
+アダプターパターンをジャングルの動物たちのコミュニケーションに適用したPythonコードの例です。
 
 ```python
-# 既存インターフェース
-class Animal:
-    # 動物インターフェイスクラス
+class Lion:
+    def roar(self):
+        return "ガオーン"
 
-    def drink(self, water):
-        # 提供された水を飲む
-        pass
+class Monkey:
+    def scream(self):
+        return "キーキー"
 
-#  新しいインターフェース
-class WaterSource:
-    # 水源クラス
+class AnimalAdapter:
+    # アダプターの役割を果たすクラス
 
-    def provide_water(self):
-        # 水を提供する
-        return "水"
+    def __init__(self, animal):
+        self.animal = animal # 動物のインスタンスを受け取る
 
-# アダプタークラス
-class AnimalWaterAdapter(Animal):
-    # Animalクラスを継承したアダプタークラス
+    def make_sound(self):
+        # 鳴き声を上げるメソッド(動物の種類ごとに処理を切り替え)
+        if isinstance(self.animal, Lion):
+            return self.animal.roar()
+        elif isinstance(self.animal, Monkey):
+            return self.animal.scream()
 
-    def __init__(self, water_source): # 水源を引数に取る
-        self.water_source = water_source # 水源オブジェクト
+def communicate(animal_adapter):
+    print(animal_adapter.make_sound())
 
-    def drink(self): # waterを引数に取らない
-        return self.water_source.provide_water() # 水源から水を取得し飲む
+# 動物たちのインスタンスを作成
+lion = Lion()
+monkey = Monkey()
 
-# クライアントコード
-def water_distribution(animal: Animal, water): # 動物と水を引数に取る
-    animal.drink(water)
+# アダプターのインスタンスを作成
+lion_adapter = AnimalAdapter(lion)
+monkey_adapter = AnimalAdapter(monkey)
 
-# 使用方法
-source = WaterSource() # 水源オブジェクトを作成
-adapter = AnimalWaterAdapter(source) # アダプターを作成
-water_distribution(adapter, "水") # アダプターを使って水を配る
+# 鳴き声を出力(アダプターを介しているため、動物の種類に関係なく同じメソッドを呼び出している)
+communicate(lion_adapter)
+communicate(monkey_adapter)
 ```
 
-動物たちは、それぞれの種が独自の方法で水を飲んでいることに気付きました。そこで、それぞれの飲み方を変えずに水を飲める共通のシステムが必要になりました。そこで登場したのが、Adapterパターンです。
+このコードでは、LionクラスとMonkeyクラスが異なるインターフェイスを持っていますが、AnimalAdapterクラスを使って同じmake_soundメソッドで動物たちの鳴き声を出力できるようになっています。
 
-Adapterパターンは、互換性のない2つのインタフェースの間のギャップを埋めるのに役立つ構造設計パターンです。ジャングルでは、既存の`Animal`クラスには`drink`メソッドがあり、新しい`WaterSource`クラスには`provide_water`メソッドがありました。動物たちは、既存の飲む動作を変更することなく、水源を利用するためのアダプタを必要としていました。
+```mermaid
+classDiagram
+    class AnimalAdapter {
+        -animal : object
+        +make_sound() : string
+    }
+    class Lion {
+        +roar() : string
+    }
+    class Monkey {
+        +scream() : string
+    }
+    Lion --|> AnimalAdapter
+    Monkey --|> AnimalAdapter
+```
 
-## アダプタの実装
-この問題を解決するために、`Animal`クラスを継承した`AnimalWaterAdapter`クラスを作成しました。このアダプタは、`WaterSource`オブジェクトを引数に取り、`drink`メソッドを実装しました。`drink`メソッドの内部では、`WaterSource`オブジェクトから`provide_water`メソッドを呼び出しています。
-
-## すべての動物に水を配る
-動物たちは、`water_distribution`関数を使うことで、動物たち独自の飲み方に関係なく、すべての動物に水を供給できるようになりました。クライアントコードは、水源の根本的な違いや、動物がどのように水を消費するかを意識する必要はありませんでした。アダプタがそれを処理してくれるので、水のぶん配に集中できるのです。
-
-アダプタのパターンを導入したことで、ジャングルの動物たちは、みんなに効果的に水を配って干ばつを克服できました。アダプタ・パターンが彼らの違いを埋めてくれたおかげで、彼らはより暮らしやすくなり、調和して暮らし続けることができたのです。
-
-## まとめ
-この物語では、動物たちがこれまでの行動を変えることなく、新しい配水システムを利用できるようにすることで、アダプタのパターンが力を発揮しています。このパターンがあったからこそ、動物たちは違いを感じながらも共存し続け、ともに困難を乗り越えていくことができたのです。
+このMermaidコードは、Lionクラス、Monkeyクラス、およびAnimalAdapterクラスの関係を示しています。AnimalAdapterは、LionとMonkeyクラスを適用させるためのアダプターとして機能しています。
