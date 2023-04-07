@@ -7,78 +7,87 @@ title: "2.5 Facadeパターン"
 ![](/images/20230327_gof/A_group_of_excited_children_stand_in_front_of_a_mysterio.jpg)
 *不思議な壁の前に立つ子どもたちは、目を見開いて驚いています。隠された扉がきらきらと音を立てて開き、その向こうの世界が見えてきます。*
 
-## 謎の壁
+## Facadeパターンの特徴
+ある日、5人の子供たちが、壁の向こうに広がる秘密の世界への入り口を見つけようと決めました。しかし、壁の向こうの世界は非常に複雑で、子供たちはそれぞれの部分を理解しようと苦労しました。そこで、子供たちは互いに協力して、壁にある入り口を見つけるための「入り口案内人」を作成しました。
 
-かつて、ある小さな村で、子どもたちが、どこまでも続く巨大な壁を見つけました。子どもたちは、その壁の向こうに秘密の世界があるかもと興味津々でしたが、その壁はとても頑丈そうで、入り込むことができません。ある日、子どもたちは、隠された入り口を一緒になって探すことにしました。
+入り口案内人は、壁の向こうの世界にアクセスするためのシンプルなインターフェースを提供します。子供たちは、この案内人を通じて秘密の世界の機能を簡単に利用できるようになりました。
 
 ```python
-class MysteriousWall:
+class SecretWorld:
     def __init__(self):
-        self._hidden_door = HiddenDoor()
+        # サブシステムのインスタンス化
+        self._subsystem1 = Subsystem1()
+        self._subsystem2 = Subsystem2()
+        self._subsystem3 = Subsystem3()
 
-    def knock(self):
-        self._hidden_door.knock()
+    def operation1(self):
+        # サブシステム1の機能を呼び出す
+        return self._subsystem1.method1()
 
-    def push(self):
-        self._hidden_door.push()
+    def operation2(self):
+        # サブシステム2の機能を呼び出す
+        return self._subsystem2.method2()
 
-    def pull(self):
-        self._hidden_door.pull()
+    def operation3(self):
+        # サブシステム3の機能を呼び出す
+        return self._subsystem3.method3()
 
-class HiddenDoor:
-    def knock(self):
-        print("You knocked on the door.")
 
-    def push(self):
-        print("You pushed the door.")
+class Subsystem1:
+    def method1(self):
+        return "サブシステム1の機能"
 
-    def pull(self):
-        print("You pulled the door.")
+
+class Subsystem2:
+    def method2(self):
+        return "サブシステム2の機能"
+
+
+class Subsystem3:
+    def method3(self):
+        return "サブシステム3の機能"
 ```
 
-## 公開されたファサード
+このコードは、Facadeパターンを使用して、秘密の世界の複雑な機能を単純化しています。SecretWorldクラスが入り口案内人（Facade）であり、複数のサブシステムをまとめて操作できます。これにより、子供たちは簡単に壁の向こうの世界の機能を利用できます。
 
-子どもたちの一人、ルーシーは、壁には複雑な模様がいくつもあり、まるで大きなしかけの一部であるかのように見えることに気付きました。そこで、「ファサード」を作って、もっと簡単に壁とインタラクションできるようにしようと提案しました。
-
-```python
-class WallFacade:
-    def __init__(self, wall: MysteriousWall):
-        self._wall = wall
-
-    def interact_with_wall(self):
-        self._wall.knock()
-        self._wall.push()
-        self._wall.pull()
-
-wall = MysteriousWall()
-facade = WallFacade(wall)
+```mermaid
+classDiagram
+    class SecretWorld {
+        +operation1(): string
+        +operation2(): string
+        +operation3(): string
+    }
+    class Subsystem1 {
+        +method1(): string
+    }
+    class Subsystem2 {
+        +method2(): string
+    }
+    class Subsystem3 {
+        +method3(): string
+    }
+    SecretWorld "1" --* "1" Subsystem1 : 使用
+    SecretWorld "1" --* "1" Subsystem2 : 使用
+    SecretWorld "1" --* "1" Subsystem3 : 使用
 ```
 
-## 扉が開く
+このUML図は、SecretWorld（Facade）がサブシステムの機能にアクセスし、それらをまとめて提供していることを示しています。子供たちは、SecretWorldのシンプルなインターフェースを通じて、簡単に壁の向こうの世界の機能を利用できます。
 
-ルーシーは`WallFacade`を使って、壁をノックしたり、押したり、引っ張ったりといろいろな組み合わせを試しました。子どもたちは集まってきて、何かが起こるのを期待しながら待っていました。
+## 利点
+Facadeパターンの利点は、次のとおりです。
 
-:::message
-このコードだといろいろ工夫している感がないですね。この物語全体を書き直したいと思います🚧🚧
-:::
+- クライアントと複雑なサブシステム間にシンプルなインターフェースを提供し、クライアントがサブシステムを簡単に利用できるようになります。
+- 低レベルな機能を直接扱わずに、高レベルなインターフェースを提供することで、クライアントが実装の詳細を知る必要がありません。
+- サブシステムの変更に対して、クライアントの影響を最小限に抑えることができます。
+## 欠点
+Facadeパターンの欠点は、次のとおりです。
 
-```python
-def find_secret_combination(facade: WallFacade):
-    facade.interact_with_wall()
-    facade.interact_with_wall()
-    facade.interact_with_wall()
+- サブシステムのすべての機能を利用する必要がある場合、Facadeが複雑になる可能性があります。
+- パフォーマンスが低下する可能性があります。なぜなら、Facadeを介してアクセスすることで、追加のオーバーヘッドが発生するからです。
+## 欠点への対策
+欠点への対策は、次のとおりです。
 
-find_secret_combination(facade)
-```
+- 複雑なFacadeを避けるために、サブシステムの機能を適切に分割し、複数のFacadeを使用してください。これにより、各Facadeが単一の責任を持つことができます。
+- パフォーマンスの問題がある場合は、Flyweightパターンを使用して、Facadeのインスタンス化に伴うオーバーヘッドを軽減できます。
 
-## 新しい世界が待っている
-
-何度も試行錯誤の末、ついに秘密の組み合わせが見つかった！壁の向こうには魔法の世界が広がっていたのです。子どもたちは大喜びで、早くこの新しい世界を探検したいと思いました。
-
-## ファサードの力
-
-子どもたちは、Facadeパターンが、`MysteriousWall`のような複雑なシステムとの対話を容易にすることを学びました。シンプルなインタフェースを作ることで、ルーシーとその仲間たちは壁の秘密を解き明らかし、まったく新しい冒険の世界を発見できたのです。
-
-Facadeパターンは、子どもたちにシンプルなインタフェースを提供しました。そして、複雑な`MysteriousWall`と対話し、最終的に秘密の扉を見つけることができるようになりました。
-
-こうして子どもたちは、ファサード柄の力を借りて、壁の向こうの隠された世界で数え切れないほどの冒険をすることになったのです。そして、どんな困難も工夫とチームワークで乗り越えられることを、子どもたちはいつも心にとどめていました。
+Facadeパターンは、クライアントが複雑なサブシステムと簡単にやり取りできるようにするために使用されます。壁の向こうの秘密の世界への入り口を探す子供たちの冒険の物語を通じて、このデザインパターンの特徴、利点、欠点、および欠点への対策が説明されています。この物語を使って、初心者もFacadeパターンを理解しやすくなります。

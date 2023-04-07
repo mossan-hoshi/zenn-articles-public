@@ -5,20 +5,20 @@ title: ''
 I'm planning to create content for beginners in GoF design patterns to learn each design pattern through a story.
 
 ### [Various information]
-{design pattern name}=Decorator
-{design pattern metaphor}=A mysterious story about Christmas tree ornaments that come to life
+{design pattern name}=Composite
+{design pattern metaphor}=A story of trees working together in a snowy forest to fight a threat
 {Constraints}=[
     "Divide into subsections with headings according to the content" ,
     "Do not make it a short story. Make it long enough to explain each feature of the design pattern.",
     "Include in 'features,' 'advantages', 'disadvantages,' and 'countermeasures to disadvantages' of that design pattern with story.",
     "If you are migrating to another design pattern in the 'Countermeasures to Disadvantages', please specify the name of that design pattern.",
-    "Please Include python code that is appropriate for the story and easy to understand how the design pattern works, along with carefully explained comments, and use @decorator.",
+    "Please Include python code that is appropriate for the story and easy to understand how the design pattern works, along with carefully explained comments",
+    "Please Include UML diagrams mermaid codes that describe the structure of the python code as needed." ,
     "Write in Japanese"
 ]
-===
+### 
 
 Please tell your story under the conditions of the above[Various information].
-When you have written out 200 words, stop, and when I say "continue," write out the next 200 words after the point where you stopped (repeat this procedure until you have output the full article).
 
 {design pattern name}=Factory Method
 {design pattern metaphor}=The Adventures of Robot Workers in a Spaceship Factory

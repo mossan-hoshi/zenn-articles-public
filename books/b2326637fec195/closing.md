@@ -3,6 +3,9 @@ title: "さらなる学習用資料・この本の作り方・さいごに"
 ---
 
 # さらなる学習用資料
+- ChatGPT(特にGPT-4)
+  - ソフトウェアアーキテクチャのような枯れた技術情報については疑問を直接聞いてみると結構的確な回答をしてくれます
+    ![](/images/20230329_software_architecture/2023-04-05-10-29-17.png =500x)
 - 書籍
   - 2〜9章
     - [原著「Fundamentals of Software Architecture」](https://learning.oreilly.com/library/view/design-patterns-elements/0201633612/) 

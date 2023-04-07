@@ -9,70 +9,103 @@ title: "3.6 Mementoパターン"
 
 ## タイムカプセルの発見
 
-ある絵のように美しい小さな町で、大人になった幼馴染みたちが、何年も前に埋めたまま忘れていたタイムカプセルを再発見するために再会を果たしました。彼らの望みは、共有する過去のエッセンスをとらえた思い出の品を取り戻すことでした。
+あるところに、時の経過とともに失われた貴重な思い出を取り戻す力を持つタイムカプセルがあるという話がありました。その話を聞いた友人たちが、タイムカプセルを見つけ出し、失われた思い出を取り戻す冒険に出かけます。
+
+## Mementoパターンの特徴
+Mementoパターンは、オブジェクトの内部状態を保存し、後でその状態に戻すことができるデザインパターンです。このパターンでは、オリジン（Originator）、ケアテイカー（Caretaker）、メメント（Memento）の3つの役割があります。
+
+### オリジン (Originator)
+オリジンは、内部状態を持つオブジェクトで、その状態を保存したい時にメメントオブジェクトを作成します。また、メメントオブジェクトを使って状態を復元できます。この例では、友人たちがオリジンとなります。友人たちは、タイムカプセルを使って失われた思い出を取り戻すことができます。
+
+### ケアテイカー (Caretaker)
+ケアテイカーは、メメントオブジェクトを保持しておく役割を担います。ケアテイカーは、オリジンからメメントを受け取り、適切なタイミングで状態を復元するためにメメントを返します。この例では、タイムカプセルを見つけた場所がケアテイカーになります。
+
+### メメント (Memento)
+メメントは、オリジンの内部状態を保持するオブジェクトです。メメントは、オリジンの内部状態を直接操作できず、オリジンが提供するインターフェースを通じてのみ状態を取得できます。この例では、タイムカプセルがメメントに相当します。
+
+## Mementoパターンの利点
+オブジェクトの状態を保存・復元できる： Mementoパターンを使用すると、オブジェクトの状態を簡単に保存・復元できます。
+オブジェクトの利点
+
+- **カプセル化を保持**: オリジンの内部状態はメメントオブジェクトによってカプセル化され、外部から直接操作されることはありません。これにより、安全に状態を保持できます。
+
+## Mementoパターンの欠点
+- **メモリ消費**: 大量のメメントオブジェクトが作成されることで、メモリ消費が増加する可能性があります。
+- **実装が複雑になる**: オリジン、メメント、ケアテイカーの3つの役割を実装する必要があり、コードが複雑になりがちです。
+
+## 欠点への対策
+欠点への対策として、メモリ消費を抑えるために、状態の差分のみを保存する方法が考えられます。また、実装の複雑さを軽減するために、コマンドパターンを組み合わせることができます。
 
 ```python
-# オブジェクトの状態を保存するMementoクラス
-class Memento:
+from copy import deepcopy
+
+class Originator:
+    # オリジン
+
     def __init__(self, state):
+        # オリジンの状態を設定
         self._state = state
 
-    def get_state(self):
-        return self._state
-```
-## 思い出を掘り起こす
-
-カプセルの正確な位置はわからりませんでしたが、目印になるものをいくつか覚えていました。探しながら、彼ら挟まざまな物や手がかりに出くわし、幼いころの冒険の思い出がよみがえりました。
-
-```python
-# メメントオブジェクトの作成と復元を担当するオリジネータークラス
-class TimeCapsule:
-    def __init__(self, state):
+    def set_state(self, state):
+        # 状態を設定
         self._state = state
 
     def create_memento(self):
-        return Memento(self._state)
+        # 状態をメメントに保存
+        return deepcopy(self._state)
 
-    def restore_memento(self, memento):
-        self._state = memento.get_state()
-```
-## ジャーニー・スルー・タイム
+    def restore_from_memento(self, memento):
+        # メメントから状態を復元
+        self._state = deepcopy(memento)
 
-思い出の品を見つけるたびに、友人たちはまるでタイムスリップしたかのような感覚に陥りました。手紙や絵、小物など、思い出の品々を見つけるたびに、さまざまな感情や過去のエピソードが溢れ出てきました。思い出の品が発掘されるにつれ、彼らは一体感を感じ、自分たちの絆に感謝するようになりました。
+    def __str__(self):
+        # オリジンの状態を文字列で返す
+        return f"Originator(state={self._state})"
 
-```python
-Copy code
-# メメントスを管理する「ケアテーカー」クラス
-class MemoryKeeper:
-    def __init__(self):
-        self._mementos = []
+class Caretaker: # ケアテイカー
+def init(self):
+    self._mementos = [] # メメントのリスト
 
     def add_memento(self, memento):
+        # メメントを追加
         self._mementos.append(memento)
 
     def get_memento(self, index):
+        # メメントを取得
         return self._mementos[index]
+
+# 使用例
+if name == "main":
+    originator = Originator("initial state")
+    caretaker = Caretaker()
+
+    # 状態を保存
+    caretaker.add_memento(originator.create_memento())
+
+    # 状態を変更
+    originator.set_state("new state")
+
+    # 状態を復元
+    originator.restore_from_memento(caretaker.get_memento(0))
+
+    print(originator)  # Originator(state=initial state)
 ```
-## 思い出の品に込められた力
 
-ようやく見付け足タイムカプセルを丁寧に開けると、中には大切な思い出の品が入っていました。友人たちはそれぞれ順番に記念品を提示し、それにまつわる思い出を回想し、過去を保存するための記念品のパターンの力を感じていました。
+この実装では、`Originator`クラスがオリジンの役割を、`Caretaker`クラスがケアテイカーの役割を担います。`deepcopy`を使ってオリジンの状態をコピーし、メメントオブジェクトを作成しています。また、`restore_from_memento`メソッドで状態を復元しています。
 
-```python
-Copy code
-# クライアントコード
-def main():
-    memory_keeper = MemoryKeeper()
-    time_capsule = TimeCapsule("Childhood memories")
-
-    memory_keeper.add_memento(time_capsule.create_memento())
-    time_capsule._state = "Present time"
-
-    saved_memory = memory_keeper.get_memento(0)
-    time_capsule.restore_memento(saved_memory)
-    print(time_capsule._state)  # Output: Childhood memories
-
-main()
+```mermaid
+classDiagram
+    class Originator {
+        +set_state(state: str)
+        +create_memento(): object
+        +restore_from_memento(memento: object)
+    }
+    class Caretaker {
+        -_mementos: List[object]
+        +add_memento(memento: object)
+        +get_memento(index: int): object
+    }
+    Originator "1" -- "1" Caretaker: creates and restores memento
 ```
-## 絆が深まる
 
-その日が終わると、友人たちはタイムカプセルの本当の価値と思い出に気付きました。タイムカプセルは、自分たちの人生の一部を保存・復元するものであり、その結果、二人の距離を縮めることになりました。思い出を共有し、追体験することで、彼らは絆を大切にし、これからもずっとつながって思い出を作っていこうと誓ったのです。
+このUML図では、OriginatorクラスとCaretakerクラスの関係が示されています。Originatorはメメントを作成・復元する役割を担い、Caretakerはメメントを保持します。

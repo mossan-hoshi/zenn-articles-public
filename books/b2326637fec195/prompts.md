@@ -2,28 +2,27 @@
 title: ""
 ---
 
-I'm planning to create content for beginners in software architecture to learn about the characteristics, advantages and disadvantages of each architecture through a story that unfolds as if the architecture were a building, a city, or a fortress.
+I'm planning to create content for beginners in software architecture  to learn each software architecture through a story.
 
 ### [Various information]
-{architecture name}=Microkernel Architecture
-{architecture metaphor}=Modular Factory
-{Title}=The Kernel Conundrum
-{Story Summary}=A highly adaptable factory centered around an aprocessing unit（kernel）surrounded by interchangeable plug-in modules. This story illustrates the extensibility and adaptability of the microkernel architecture by depicting a factory manager who solves the challenges of maintaining a stable kernel while incorporating and adjusting new modules for various tasks。
+{architecture name}=Microservices Architecture
+{Architecture Metaphor}=Archipelago
+{Title}=The Great Migration of Islands
+{Story Summary}=In a world dotted with islands, each island specializes in one function to serve the needs of the entire archipelago. The inhabitants of these islands must cooperate, communicate, and trade to maintain balance. This story follows their journey to overcome isolation, establish solid communication channels, and thrive in a decentralized environment.
 {Constraints}=[
-   "Headings according to context." ,
-    "Include story-appropriate python code with comment."   ,
-    "Include in your narrative the 'features,' 'advantages', 'disadvantages,' and 'countermeasures to disadvantages' of that architecture.",
-    "'features,' 'advantages' and 'disadvantages,' should contain story text and a bulleted list with keywords to summarize the points.,
+    "Do not make it a short story. Make it long enough to explain each feature of the design pattern.",
+    "Divide into subsections with headings according to the content" ,
+    "Please Include python code that is appropriate for the story and easy to understand how the software architecture works, along with well explained comments",
+    "Include in 'features,' 'advantages', 'disadvantages,' and 'countermeasures to disadvantages' of that software architecture with story.",
     "If you are migrating to another software architecture in the 'Countermeasures to Disadvantages', please specify the name of that software architecture.",
-    "The total number of words should be approximately 3000 words."  ,
-    "Include UML diagrams mermaid codes that describe the structure of the code as needed." ,
+    "Please Include UML diagrams mermaid codes that describe the structure of the python code as needed." ,
     "Make sure that the contents of the document show the feature, advantage, and disadvantage of the architecture.",
+    "describe the relationship between TDD",
     "Write in Japanese"
 ]
 ===
 
 Please tell your story under the conditions of the above[Various information].
-When you have written out 200 words, stop, and when I say "continue," write out the next 200 words after the point where you stopped (repeat this procedure until you have output the full article).
 
 
 {architecture name}=Monolithic Architecture
@@ -58,12 +57,12 @@ When you have written out 200 words, stop, and when I say "continue," write out 
 
 {architecture name}=Space-based Architecture
 {Architecture Metaphor}=Space Station
-{Title}=The Galacticグリッド
+{Title}=The Galactic grid
 {Story Summary}=A network of interconnected space stations forms a vast grid of space, each station responsible for processing and storing data. The story revolves around a team of engineers working to maintain and expand the space stations, highlighting the benefits of space-based architecture while overcoming challenges such as data distribution, fault tolerance, and load balancing。
 
 {architecture name}=Orchestration Driven Service Oriented Architecture
 {Architecture Metaphor}=The Grand Theater
-{Title}=Maestro'sマスタpiece
+{Title}=Maestro's masterpiece
 {Story Summary}=A complex production is staged in the Grand Theater, with the various performers representing the services and the conductor the orchestrator. Emphasizing the centralized control and coordination aspects of orchestration-driven service-oriented architecture, the story follows the trials and errors of a young conductor as he learns the art of harmonizing services, managing information flow, and making decisions。
 
 {architecture name}=Microservices Architecture

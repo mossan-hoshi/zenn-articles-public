@@ -9,71 +9,98 @@ title: "3.1 Chain of Responsibilityパターン"
 
 
 ## 始めに
-森の中にある小さな村で、ある動物たちがユニークな挑戦をしました。ドミノ倒しの要領で、村に洪水を起こさないようにするのです。動物たちは、それぞれの特技を活かして協力し合いながら、この課題をクリアしていきました。
+ある森の中で、さまざまな小動物たちがドミノのようにつながって助け合って暮らしていました。彼らは連鎖の法則を利用して、効率よく問題を解決する方法を見つけ出したのです。
 
-## 責任の連鎖パターン
+## Chain of Responsibilityパターンとは
+Chain of Responsibilityパターンは、複数のオブジェクトが連鎖して、その中のどれかが処理を行うデザインパターンです。連鎖に含まれるオブジェクトは、リクエストを処理できるかどうかを判断し、できない場合は次のオブジェクトにリクエストを渡します。これにより、クライアントは連鎖のどのオブジェクトが処理を行うかを気にせず、リクエストを連鎖に渡すだけで済みます。
+
+## Chain of Responsibilityパターンの特徴
+- 連鎖のオブジェクトは、**処理を行うか次のオブジェクトにリクエストを渡すか**を決定します。
+- クライアントは、連鎖の**どのオブジェクトが処理を行うかを知る必要がありません**。
+- 連鎖に新しいオブジェクトを**追加**したり、既存のオブジェクトを**入れ替え**たりすることが**容易**です。
+
+森の小動物たちがドミノのようにつながっていたところ、突然雷が落ち、森に火が燃え広がりました。火を消すために、小動物たちは連鎖を組んで水を運び始めました。まず、リーダーであるウサギが水を汲み、次の小動物に渡していくのです。
+
+しかし、ある小動物が水を受け取ることができない場合、その小動物は次の小動物に水を直接渡すことにしました。こうして、彼らは効率よく水を運ぶことができました。
+
+## Chain of Responsibilityパターンの利点と欠点
+この連鎖の方法は、効率的に問題を解決できる利点があります。クライアントは、連鎖のどの小動物が処理を行うかを知る必要がなく、リーダーであるウサギに水を渡すだけで良いのです。また、連鎖に新しい小動物を追加したり、既存の小動物を入れ替えたりすることが容易です。
+
+しかし、欠点もあります。連鎖が長くなると、処理が遅くなることがあります。また、連鎖の中で誰が最終的に処理を行うかが分かりにくくなることもあります。
+
+## 不利な点への対処方法
+連鎖が長くなり処理が遅くなる問題に対しては、連鎖を適切な長さに保つことが重要です。また、処理の優先順位を決めておくことで、連鎖の中で誰が処理を行うかが分かりやすくなります。
+
+さて、ここでチェーン・オブ・レスポンシビリティをPythonで実装してみましょう。
+
 ```python
-class Animal:
-    def __init__(self, successor=None):
-        self.successor = successor
+from abc import ABC, abstractmethod
 
-    def set_successor(self, successor):
-        self.successor = successor
+# Handler（処理を行う抽象クラス）
+class Animal(ABC):
+    def __init__(self):
+        # 次の処理を行うオブジェクト
+        self.next_animal = None
 
-    def handle_request(self, request):
-        if self.successor:
-            self.successor.handle_request(request)
-```
-## Animalクラス
-Animalクラスは、責任の連鎖パターンを表し、各アニマルは固有の役割と後継者を持ちます。ある動物がタスクを完了できない場合、そのリクエストを次の動物に渡します。
+    def set_next(self, next_animal):
+        # 次の処理を行うオブジェクトを設定
+        self.next_animal = next_animal
 
-```python
-class Squirrel(Animal):
-    def handle_request(self, request):
-        if request == "gather":
-            print("Squirrel: I'll gather the dominoes!")
-        else:
-            super().handle_request(request)
+    @abstractmethod # 抽象メソッド
+    def carry_water(self, amount):
+        # 水を運ぶ処理
+        pass
 
-class Bird(Animal):
-    def handle_request(self, request):
-        if request == "position":
-            print("Bird: I'll position the dominoes!")
-        else:
-            super().handle_request(request)
-
+# 具体的なHandler
 class Rabbit(Animal):
-    def handle_request(self, request):
-        if request == "push":
-            print("Rabbit: I'll push the dominoes!")
-        else:
-            super().handle_request(request)
+    def carry_water(self, amount):
+        # 水を運ぶ処理
+        if amount < 10:
+            # 10リットル未満の場合水を運ぶ
+            print(f"ウサギが{amount}リットルの水を運びます。")
+        elif self.next_animal:
+            # 次の処理を行うオブジェクトがある場合は次の処理を行う
+            self.next_animal.carry_water(amount)
 
+class Squirrel(Animal):
+    def carry_water(self, amount):
+        # 水を運ぶ処理
+        if 10 <= amount < 20:
+            # 10リットル以上20リットル未満の場合水を運ぶ
+            print(f"リスが{amount}リットルの水を運びます。")
+        elif self.next_animal:
+            # 次の処理を行うオブジェクトがある場合は次の処理を行う
+            self.next_animal.carry_water(amount)
+
+# クライアント
+rabbit = Rabbit() # ウサギ(リーダー)
+squirrel = Squirrel() # リス(ウサギの次の処理を行うオブジェクト)
+
+rabbit.set_next(squirrel) # ウサギの次の処理を行うオブジェクトをリスに設定
+
+rabbit.carry_water(5) # ウサギが5リットルの水を運びます(10リットル未満のため)。
+rabbit.carry_water(15) # リスが15リットルの水を運びます(10リットル～20リットルのため)。
 ```
 
-## チェインの実装
-`Squirrel`、`Bird`、`Rabbit`クラスは、タスクを完了させるために動物がもつ固有の役割を表しています。それぞれの動物が処理できるタスクは決まっており、リクエストを処理できない場合は、後継者に渡します。
+このコードでは、AnimalクラスがHandlerの役割を担い、具体的な動物（ウサギとリス）が処理を行います。連鎖はset_nextメソッドで設定され、ウサギがリスに水を渡すようになっています。carry_waterメソッドでは、動物が運べる水の量に基づいて処理が行われます。運べる量を超える場合、次の動物に処理が渡されます。
 
-```python
-squirrel = Squirrel()
-bird = Bird()
-rabbit = Rabbit()
+```mermaid
+classDiagram
+    class Animal {
+        +set_next(next_animal: Animal): None
+        +carry_water(amount: int): None
+    }
+    class Rabbit {
+        +carry_water(amount: int): None
+    }
+    class Squirrel {
+        +carry_water(amount: int): None
+    }
 
-squirrel.set_successor(bird)
-bird.set_successor(rabbit)
+    Animal <|-- Rabbit
+    Animal <|-- Squirrel
 ```
 
-## チェインの実行
-リス（`squirrel`)がきっかけとなり、動物たちが連鎖的につながっていきます。
+このUML図では、Animalクラスが抽象クラスであり、RabbitとSquirrelクラスが具体的な処理を行うクラスとなっています。連鎖は、Animalクラスのnext_animalインスタンス変数とset_nextメソッドで表現されています。
 
-```python
-squirrel.handle_request("gather")
-squirrel.handle_request("position")
-squirrel.handle_request("push")
-```
-
-## タスクを完了させる
-森の中心で、動物たちは力を合わせてこの難題を乗り越えました。リスはドミノを集め、鳥はドミノを配置し、ウサギはドミノを押して、洪水から家を守る障壁を作り上げました。
-
-## まとめ
-動物たちのチームワークは、責任の連鎖パターンに象徴されるように、協力し合い、独自のスキルを駆使することで、どんな困難も乗り越えられることを示したのです。
+この物語を通じて、チェーン・オブ・レスポンシビリティの特徴や利点、欠点、そして不利な点への対処方法を理解できました。このデザインパターンを使うことで、効率的に問題を解決できるアプリケーションを作成できるでしょう。

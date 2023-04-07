@@ -3,6 +3,9 @@ title: "さらなる学習用資料・この本の作り方・さいごに"
 ---
 
 # さらなる学習用資料
+- ChatGPT(特にGPT-4)
+  - デザインパターンのような枯れた技術情報については疑問を直接聞いてみると結構的確な回答をしてくれます
+    ![](/images/20230327_gof/2023-04-05-10-38-52.png =500x)
 - 書籍
   - 原典「"Design Patterns: Elements of Reusable Object-Oriented Software"」
     - [原著](https://learning.oreilly.com/library/view/design-patterns-elements/0201633612/) 
@@ -41,20 +44,52 @@ title: "さらなる学習用資料・この本の作り方・さいごに"
           ```
 
 2. 各パターンに対して物語を語ってもらう（ChatGPT）
-    効率化のために英語で質問しています。
-
     - プロンプト（英語。この場合はVisitorパターン。パターン名`'Visitor Pattern'`と1の回答結果を英訳したもの（`'The story of a visitor~`)をプロンプト内に埋め込んでいます）
+      - もともと効率化のために英語で書いてましたが、最終的には日本語出力にしてるので、日本語のプロンプトで投げても同じかもしれません
+      - `"Write in Japanese"`を付けると日本語出力、つけないと英語出力になります
       ```
-      Tell the story of the GoF design pattern 'State Pattern' as a 500-word episode that shows how the design pattern works in the human drama 'The adventures of a superhero whose abilities change with his mood.'. Please set some  commented python code in moderation to make it easy to understand how it works. Please add headings according to the content.The style of writing should match the content of the story.
+      I'm planning to create content for beginners in GoF design patterns to learn each design pattern through a story.
+
+      ### [Various information]
+      {design pattern name}=Strategy
+      {design pattern metaphor}=A strategic tale of a boy's quest to win a chess tournament
+      {Constraints}=[
+          "Divide into subsections with headings according to the content" ,
+          "Do not make it a short story. Make it long enough to explain each feature of the design pattern.",
+          "Include in 'features,' 'advantages', 'disadvantages,' and 'countermeasures to disadvantages' of that design pattern with story.",
+          "If you are migrating to another design pattern in the 'Countermeasures to Disadvantages', please specify the name of that design pattern.",
+          "Please Include python code that is appropriate for the story and easy to understand how the design pattern works, along with carefully explained comments",
+          "Write in Japanese"
+      ]
+      ===
+
+      Please tell your story under the conditions of the above[Various information].
+      When you have written out 200 words, stop, and when I say "continue," write out the next 200 words after the point where you stopped (repeat this procedure until you have output the full article).
       ```
       プロンプトの意味（日本語訳）
       ```
-      GoFのデザインパターン「State Pattern」が、人間ドラマ「気分で能力が変わるスーパーヒーローの冒険」でどのように機能するかを500字のエピソードとして語ってください。仕組みがわかりやすいように、コメント付きのpythonコードも適度に設定してください。内容に応じて見出しを付けてください。文体はストーリーの内容に合わせてください。
+      GoFデザインパターンの初心者向けに、各デザインパターンをストーリーで学べるコンテンツを作ろうと思っています。
+
+      ### ーー【各種情報】ーー
+      {デザインパターン名}=ストラテジー
+      {デザインパターンメタファー}=チェストーナメントで優勝を目指す少年の戦略物語
+      {制約条件}=[
+          "内容に応じて見出しをつけてサブセクションに分割する" 、
+          "短編小説にしないこと。そのデザインパターンの各特徴を説明するのに十分な長さにすること。"、
+          "そのデザインパターンの『特徴』『メリット』『デメリット』『デメリットへの対策』をストーリー付きで記載してください。"、
+          "「デメリットへの対策」で他のデザインパターンに移行する場合、そのデザインパターン名を明記してください。"、
+          "ストーリーに適した、デザインパターンの仕組みがわかりやすいpythonコードを、丁寧に説明したコメントとともに記載し、@decoratorを使用してください。"、
+          "日本語で書く"
+      ]
+      ===
+
+      上記[各種情報]の条件下で、あなたのストーリーを語ってください。
+      200字書き出したら止め、「続けて」と言ったら、止めた地点の次の200字を書き出してください（全文を出力するまでこの手順を繰り返してください）。
       ```
-    - 記事が生成されるのでDeepL等で翻訳してください
+    - [英語出力の場合のみ］記事が生成されるのでDeepL等で翻訳してください
       - である・ですます調が混在しがちですので、物語に向いている方に書き直したほうがよいかもしれません
 
-3. 直後の質問で画像生成AI用のプロンプトを作成してもらう（ChatGPT）
+1. 直後の質問で画像生成AI用のプロンプトを作成してもらう（ChatGPT）
       - プロンプト
         ```
         Assuming that a scene from this episode is to be represented as a painting, please provide a short description (one sentence) of the painting. However, please observe the following [Restrictions].
@@ -81,7 +116,7 @@ title: "さらなる学習用資料・この本の作り方・さいごに"
           A powerful superhero, surrounded by a vivid aura representing his shifting emotions, battles menacing villains amidst a chaotic cityscape, with citizens looking on in awe and hope.
           ```
 
-4. 画像生成AIでプロンプトを張り付けて画像を生成する
+2. 画像生成AIでプロンプトを張り付けて画像を生成する
     - 必要に応じて好みの画像のタイプ（例：`Anime,`）などを指定
     ![](/images/20230327_gof/2023-03-29-15-13-54.png)
     - 具体的なスタイルについては[こちら](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference)等が参考になります。

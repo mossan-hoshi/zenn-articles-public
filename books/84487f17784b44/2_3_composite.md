@@ -8,99 +8,131 @@ title: "2.3 Compositeパターン"
 *雪景色を背景に、互いにつながり、神秘的なエネルギーを放つ木々が力強く立ち並び、敗れた木こりが背を向ける姿は、結束と協力の力を物語っています。*
 
 ## 自然界における複合パターン
+むかしむかし、雪に覆われた森の中に、激しい吹雪の脅威に直面した木のコミュニティがありました。木々は、嵐に耐え、森を守るために協力しなければならないことに気付きました。この物語は、これらの勇敢な木の物語を通して複合デザイン パターンを理解するのに役立ちます。
 
-雪の降る森では、大きさも種類も違う木々が一緒に暮らしていました。脅威に直面したとき、彼らがいったいとなって行動できる秘密は、構造設計パターンの1つであるCompositeパターンにありました。Pythonでは、Compositeパターンを使うことで、個々の木や木のグループを一律に扱い、部分と全体の階層を表現できるようになりました。
+## Compositeパターンの概要
+Compositeデザイン パターンは、オブジェクトをツリー構造に構成して、部分と全体の階層を表すことができる構造パターンです。これにより、クライアントは個々のオブジェクトとオブジェクトの構成を一様に扱うことができます。
+
+このストーリーでは、各ツリーはコンポーネントを表し、フォレストは複合構造を表します。
+
+## Compositeパターンの特徴
+- **コンポーネント インターフェイス**: ツリー (コンポーネント）には、相互に対話できる共通のインターフェイスがあります。
+- **リーフ**: リーフは、子を持たない個々のツリーです。コンポジション内のプリミティブ オブジェクトの動作を定義します。
+- **複合**: 複合は、子 (他のツリー) を持つことができるツリーです。子コンポーネントを格納し、コンポーネント インターフェイスに子関連の操作を実装します。
+
+それでは、ストーリーをさらに掘り下げて、これらの機能が樹木が吹雪を克服するのにどのように役立つかを見てみましょう。
+
+### コンポーネントインターフェイス: Tree Pact
+吹雪と戦うために、木々は「ツリーパクト」として知られる協定を結びました。この協定により、すべての木が通信して連携するための共通のインターフェースが定義されました。 Tree Pactは、各ツリーの責任を概説しています。
+
+- 雪を集める
+- 雪を配る
+- 隣接する木の追加または削除
+
+このインターフェースにより、ツリーが個々のツリー (リーフ）であるかツリーのグループ (複合）であるかに関係なく、ツリーを均一に処理できます。
+
+### 葉: 独立した木
+森の中には、他とのつながりを作ることができない独立した木がたくさんありました。葉として知られるこれらの木は、枝に雪を集め、それを下の地面に再分配する役割を果たしました。近隣の木を追加したり削除したりすることはできませんでしたが、割り当てられたタスクを維持することで、コミュニティで重要な役割を果たしました。
+
+### **コンポジット**: 統一された木
+森の中の他の木々は、吹雪の際にお互いを支え合うために複合材と呼ばれるグループを形成しました。これらの団結した樹木のグループは、協力することでより効果的に雪を再分配できました。また、グループに木を追加または削除して、森の変化に適応できるようにすることもできました。
+
+## compositeパターンの利点
+- **クライアント コードの簡素化**: 個々のオブジェクトとオブジェクトの構成を均一に処理することにより、クライアントは、構造の詳細を知らなくても、リーフとコンポジットの両方と対話できます。
+- **容易に拡張可能**: 既存のコードを変更せずに、新しいコンポーネントまたはコンポジットを追加できるため、オープン/クローズの原則が促進されます。
+- **コード編成の改善**: 複合パターンは明確な階層構造を促進し、compositeパターンの短所間の関係を理解しやすくします。
+
+## Compositeパターンの短所
+- **過剰な一般化**: 場合によっては、複合パターンが過剰な一般化につながる可能性があります。この場合、設計が複雑になりすぎて、共通インターフェイスに特定のコンポーネントにとって意味のないメソッドが含まれます。
+- **タイプを制限することの難しさ**: パターンは高いレベルの柔軟性を可能にするため、コンポジットで許可されるコンポーネントのタイプに特定の制限を適用することは困難な場合があります。
+
+## デメリットへの対策
+compositeパターンの欠点に対処するために、次の対策を講じることができます。
+- **共通インターフェースを改良する**: コンポーネントの要件により適合するように、コンポーネント インターフェースをより細かくします。これは、インターフェイス分離の原則を使用して実現できます。
+- **Decoratorデザイン パターンを使用する**: Compositeパターンが過剰な一般化につながる場合は、Decoratorパターンを使用して、コンポーネントの構造を変更せずにコンポーネントの動作を拡張することを検討してください。
+それでは、木と森の物語を表すPythonコードの例を見てみましょう。
 
 ```python
 from abc import ABC, abstractmethod
+from typing import List
 
-class TreeComponent(ABC):
-    """
-    TreeComponent クラスは、個々のツリーとツリーグループの両方に共通するインターフェイスを定義しています。
-    """
-    @abstractmethod
-    def act(self):
+class Tree(ABC):
+    def gather_snow(self) -> None: # 雪を集める
         pass
 
-class Tree(TreeComponent):
-    """
-    Tree クラスは、TreeComponent インターフェースを実装し、個々の木を表します。
-    """
-    def __init__(self, tree_type):
-        self.tree_type = tree_type
+    def distribute_snow(self) -> None: # 雪を配る
+        pass
 
-    def act(self):
-        return f"{self.tree_type} tree acts."
+    def add_tree(self, tree: Tree) -> None: # 隣接する木の追加
+        pass
 
-class TreeGroup(TreeComponent):
-    """
-    TreeGroup クラスは、TreeComponent インターフェースを実装し、ツリーグループを表します。
-    """
-    def __init__(self):
-        self.trees = []
+    def remove_tree(self, tree: Tree) -> None: # 隣接する木の削除
+        pass
 
-    def add(self, tree_component):
-        self.trees.append(tree_component)
+class Leaf(Tree): # 葉
+    def gather_snow(self) -> None: # 雪を集める
+        print("枝に積もる雪")
 
-    def remove(self, tree_component):
-        self.trees.remove(tree_component)
+    def distribute_snow(self) -> None: # 雪を配る
+        print("雪を地面に散布する")
 
-    def act(self):
-        actions = [tree.act() for tree in self.trees]
-        return "\n".join(actions)
+class UnitedTrees(Tree): # 統一された木
+    def init(self) -> None:
+        self.trees: List[Tree] = []
+
+    def gather_snow(self) -> None: # 雪を集める
+        print("集団で雪かき")
+        for tree in self.trees:
+            tree.gather_snow()
+
+    def distribute_snow(self) -> None: # 雪を配る
+        print("集団で雪を配る")
+        for tree in self.trees:
+            tree.distribute_snow()
+
+    def add_tree(self, tree: Tree) -> None: # 隣接する木の追加
+        self.trees.append(tree)
+
+    def remove_tree(self, tree: Tree) -> None: # 隣接する木の削除
+        self.trees.remove(tree)
+
+# 使用例
+leaf1 = Leaf() # 単独の木
+leaf1.gather_snow() # 雪を集める 
+leaf1.distribute_snow() # 雪を配る
+
+united_trees = UnitedTrees() # 統一された木
+leaf2 = Leaf() # 単独の木
+leaf3 = Leaf() # 単独の木
+
+united_trees.add_tree(leaf2) # 統一された木に隣接する木を追加
+united_trees.add_tree(leaf3) # 統一された木に隣接する木を追加
+
+united_trees.gather_snow() # 統一された木の雪を集める
+united_trees.distribute_snow() # 統一された木の雪を配る
 ```
 
-## 脅威のアプローチ
-
-ある日、一人の木こりが森にやってきて、商売のために木を切り倒そうとしました。森はこの脅威に驚き、木々は自分たちの住処を守るために早急に行動を起こさなければならないと考えました。
-
-## 木々は団結する
-
-木はCompositeパターンの力を借りて、木グループを形成して協力することにしました。
-
-```python
-# ツリーグループの作成
-tree_group_1 = TreeGroup()
-tree_group_2 = TreeGroup()
-tree_group_3 = TreeGroup()
-
-# ツリーグループに個々のツリーを追加する
-tree_group_1.add(Tree("Pine"))
-tree_group_1.add(Tree("Oak"))
-tree_group_2.add(Tree("Maple"))
-tree_group_2.add(Tree("Birch"))
-tree_group_3.add(Tree("Spruce"))
-tree_group_3.add(Tree("Willow"))
-
-# すべての小さなグループを含む、より大きなツリーグループを作成する。
-forest = TreeGroup()
-forest.add(tree_group_1)
-forest.add(tree_group_2)
-forest.add(tree_group_3)
+```mermaid
+classDiagram
+    Tree <|.. Leaf
+    Tree <|.. UnitedTrees
+    class Tree {
+        +gather_snow()
+        +distribute_snow()
+        +add_tree(tree: Tree)
+        +remove_tree(tree: Tree)
+    }
+    class UnitedTrees {
+        +trees: List[Tree]
+    }
+    class Leaf{
+        +gather_snow()
+        +distribute_snow()
+    }
 ```
 
-## 団結の力
+この例では、すべてのツリーに共通のインターフェイスを表す抽象 `Tree` クラスを定義します。 `Leaf` クラスは個々のツリーを表し、`UnitedTrees` クラスは一緒に機能するツリーのグループを表します。
 
-そして、木こりの侵入を阻止するために、木々の力を結集し、作戦を立てました。それぞれの木が独自の能力を発揮し、その力を結集することで、侵入者に対抗する強力な力を生み出したのです。
+最後に、`Leaf` クラスと `UnitedTrees` クラスの使用法を示し、これらがどのように均一に扱われ、相互に作用するかを示します。
 
-```python
-# 森羅万象が一緒に行動する
-print(forest.act())
-```
-
-木々が一斉に揺れ、ざわめくと、木こりはますます不安になった。どこからどこまでが木で、どこからどこまでが木なのかがわからなくなり、どの木から切り倒せばよいのかがわからなくなりました。森がいったいとなり、協調して行動することで、木こりは見事に混乱しました。
-
-## 木こりの退却
-
-森がいったいとなった姿に圧倒された木こりは、結局、計画を断念することにしました。木々はコンポジットパターンのおかげで、協力し合って自分たちの家を守ることに成功したのです。
-
-```python
-# 個々のツリーグループは独立して行動することも可能です。
-print(tree_group_1.act())
-print(tree_group_2.act())
-```
-
-## この物語からの学び
-雪の森の木々はその勝利を喜び、コンポジットパターンを採用し続けました。このパターンによって、彼らは効率的にコミュニケーションをとり、1つの組織として行動できるようになり、また必要に応じて個々のアイデンティティを維持できるようになったのです。
-
-この話から、Compositeパターンによって、オブジェクトが部分と全体の階層を形成し、個々のコンポーネントとグループの両方を統一的に扱うことができることがわかります。これは、複雑なシステムや構造を扱う場合に特に有効で、操作を簡略化し、異なる要素間のコラボレーションを促進できます。
+木と森の物語で、複合デザインパターンの特徴、長所、短所、および短所への対策を探りました。このパターンを理解することで、複雑な設計と実装の準備が整います。
